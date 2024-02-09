@@ -5,15 +5,15 @@ import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 
-const FormationDetails = () => {
+const FormationDetails = ({navigation ,item}) => {
 
   
 return(
     
     <View>
 
-            <Text>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</Text>
-            <Text>test</Text>
+            <Text>{item.title}</Text>
+            
     </View>
     
 )

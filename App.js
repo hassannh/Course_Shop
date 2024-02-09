@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawNavigator from './navigation/DrawNavigator';
+import Details from './Screens/Details';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
@@ -15,8 +17,16 @@ export default function App() {
     
     <NavigationContainer>
      
-     <Stack.Navigator screenOptions={{headerShown:false}}>
-     <Stack.Screen name="Home" component={DrawNavigator} />
+     <Stack.Navigator >
+     <Stack.Screen name="Home" component={DrawNavigator} options={{headerShown:false}}/>
+     <Stack.Screen name='detail' component={Details} options={{headerRight: () => (
+      <FontAwesome5 
+      name="shopping-cart" 
+      size={24} 
+      color="black" 
+      onPress={() => navigation.navigate('CartScreen')} 
+    />
+     )}}/>
       </Stack.Navigator>
 
     </NavigationContainer>

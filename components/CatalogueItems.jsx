@@ -15,14 +15,14 @@ const CatalogueItem = ({ navigation,item }) => {
 
   const handleShowDetails = () => {
 
-    navigation.navigate('detail', undefined);
+    navigation.navigate('detail', {item});
   };
 
   return (
     <View style={styles.container}>
       <Image
         source={{
-          uri: item.image,
+          uri: item.image
         }}
         style={styles.image}
       />
