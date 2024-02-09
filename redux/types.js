@@ -1,3 +1,4 @@
-// src/redux/actions/types.js
 
-export const SOME_ACTION_TYPE = 'SOME_ACTION_TYPE';
+
+export const ADD_TO_CART = 'ADD_TO_CART';
+

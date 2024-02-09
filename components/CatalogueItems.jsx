@@ -1,14 +1,23 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; 
-import { Entypo } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/Actions/cartActions';
+
 
 
 const CatalogueItem = ({ navigation,item }) => {
 
+  const dispatch = useDispatch();
 
-  const handleAddToCard = () => {
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(item));
+    navigation.navigate('panier')
+  };
+
+
+  const handleNavigateToCard = () => {
     
     navigation.navigate('panier', { item });
   };
@@ -35,7 +44,7 @@ const CatalogueItem = ({ navigation,item }) => {
         <TouchableOpacity onPress={handleShowDetails}>
             <FontAwesome name="eye" size={24} color="black" style={{ }} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleAddToCard()}>
+          <TouchableOpacity onPress={() => handleAddToCart()}>
             <FontAwesome name="shopping-basket" size={24} color="black" />
           </TouchableOpacity>
       </View>

@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawNavigator from './navigation/DrawNavigator';
 import Details from './Screens/Details';
 import { FontAwesome5 } from '@expo/vector-icons';
-
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,6 +14,8 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+
+    <Provider store={store}>
     
     <NavigationContainer>
      
@@ -30,6 +32,8 @@ export default function App() {
       </Stack.Navigator>
 
     </NavigationContainer>
+
+    </Provider>
   );
 }
 
