@@ -14,13 +14,13 @@ const CatalogueItem = ({ navigation, item }) => {
 
   const selectedItems = cartItems.cartItems
 
-  
+
 
 
   const isInCart = selectedItems.some((cartItem) => cartItem.id === item.id && cartItem.selected);
 
   const handleAddToCart = () => {
-    dispatch(addToCart(item));
+    dispatch(addToCart({ ...item, selected: true }));
     Alert.alert('Added to Cart', `You added ${item.title} to your cart!`);
   };
 
@@ -39,15 +39,11 @@ const CatalogueItem = ({ navigation, item }) => {
 
 
   return (
-
+<>
+{!isInCart && (
 
     <View style={styles.container}>
-      <Image
-        source={{
-          uri: item.image
-        }}
-        style={styles.image}
-      />
+      <Image source={{  uri: item.image  }}  style={styles.image} />
       <View>
         <Text style={styles.text}>{item.title}</Text>
         <Text style={styles.price}>{item.price}$</Text>
@@ -57,11 +53,16 @@ const CatalogueItem = ({ navigation, item }) => {
         <TouchableOpacity onPress={handleShowDetails}>
           <FontAwesome name="eye" size={24} color="black" style={{}} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleAddToCart()}>
-          <FontAwesome name="shopping-basket" size={24} color="black" />
-        </TouchableOpacity>
+        
+          <TouchableOpacity onPress={handleAddToCart}>
+            <FontAwesome name="shopping-basket" size={24} color="black" />
+          </TouchableOpacity>
+       
       </View>
     </View>
+
+)}
+</>
   );
 
 

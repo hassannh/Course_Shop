@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView } from 'react-native';
 import React from 'react';
 import { FontAwesome } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch  } from 'react-redux';
+import { removeFromCart } from '../redux/Actions/cartActions';
+
+
 
 
 export default function Panier({ route }) {
@@ -9,11 +12,16 @@ export default function Panier({ route }) {
 
   const panierItems = useSelector((state) => state)
 
+  const dispatch = useDispatch();
+
   const prices = panierItems.cartItems
 
   const total = prices.reduce((acc, item) => acc + item.price, 0).toFixed(2);
 
 
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeFromCart({itemId, selected: false }));
+  };
 
   return (
     <>
@@ -27,7 +35,7 @@ export default function Panier({ route }) {
             <View key={index} style={styles.item}>
               <Text>{item.title}</Text>
               <Text>{item.price}$</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => handleRemoveItem(item.id)}>
                 <FontAwesome name="trash" size={24} color="black" />
               </TouchableOpacity>
             </View>
