@@ -1,17 +1,20 @@
 import { View, Text, Image, Alert, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
-import FormationDetails from '../components/FormationDetails';
-import { FontAwesome5 } from '@expo/vector-icons';
 import { Button, Card, } from 'react-native-paper';
-
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/Actions/cartActions'
 
 export default function Details({ route }) {
 
     const { item } = route.params;
 
+    const dispatch = useDispatch();
+
+
     const handleAddToCart = () => {
+        dispatch(addToCart(item));
         Alert.alert('Added to Cart', `You added ${item.title} to your cart!`);
+        // dispatch(addToCart(item));
     };
 
     return (

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer ,useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawNavigator from './navigation/DrawNavigator';
 import Details from './Screens/Details';
@@ -13,6 +13,8 @@ const Stack = createNativeStackNavigator();
 
 
 export default function App() {
+
+  // const navigation = useNavigation();
   return (
 
     <Provider store={store}>
@@ -26,7 +28,7 @@ export default function App() {
       name="shopping-cart" 
       size={24} 
       color="black" 
-      onPress={() => navigation.navigate('CartScreen')} 
+      onPress={() => navigation.navigate('panier')} 
     />
      )}}/>
       </Stack.Navigator>

@@ -8,12 +8,16 @@ export default function Panier({ route }) {
 
 
   const panierItems = useSelector((state) => state)
-  console.log(panierItems.cartItems)
+
+  const prices = panierItems.cartItems
+
+  const total = prices.reduce((acc, item) => acc + item.price, 0).toFixed(2);
+
 
 
   return (
     <>
-      
+
       <ScrollView >
 
         {
@@ -37,7 +41,7 @@ export default function Panier({ route }) {
               Total:
             </Text>
             <Text style={styles.cartPrice}>
-              92.67$
+              {total}$
             </Text>
           </View>
           <TouchableOpacity onPress={() => console.log('pay')}>

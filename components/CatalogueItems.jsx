@@ -1,33 +1,46 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons'; 
-import { useDispatch } from 'react-redux';
+import { View, Image, Text, Alert, TouchableOpacity, StyleSheet } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/Actions/cartActions';
 
 
 
-const CatalogueItem = ({ navigation,item }) => {
+const CatalogueItem = ({ navigation, item }) => {
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state);
 
+
+  const selectedItems = cartItems.cartItems
+
+  
+
+
+  const isInCart = selectedItems.some((cartItem) => cartItem.id === item.id && cartItem.selected);
 
   const handleAddToCart = () => {
     dispatch(addToCart(item));
-    navigation.navigate('panier')
+    Alert.alert('Added to Cart', `You added ${item.title} to your cart!`);
   };
 
 
-  const handleNavigateToCard = () => {
-    
-    navigation.navigate('panier', { item });
-  };
+
+  // if (isInCart) {
+  //   return null;
+  // }
+
+
 
   const handleShowDetails = () => {
-
-    navigation.navigate('detail', {item});
+    navigation.navigate('detail', { item });
   };
 
+
+
   return (
+
+
     <View style={styles.container}>
       <Image
         source={{
@@ -40,13 +53,13 @@ const CatalogueItem = ({ navigation,item }) => {
         <Text style={styles.price}>{item.price}$</Text>
       </View>
       <View style={styles.actions}>
-       
+
         <TouchableOpacity onPress={handleShowDetails}>
-            <FontAwesome name="eye" size={24} color="black" style={{ }} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleAddToCart()}>
-            <FontAwesome name="shopping-basket" size={24} color="black" />
-          </TouchableOpacity>
+          <FontAwesome name="eye" size={24} color="black" style={{}} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleAddToCart()}>
+          <FontAwesome name="shopping-basket" size={24} color="black" />
+        </TouchableOpacity>
       </View>
     </View>
   );

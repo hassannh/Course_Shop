@@ -6,12 +6,16 @@ import Panier from '../Screens/Panier'
 import Achats from '../Screens/Achats'
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import Details from '../Screens/Details';
+import { useNavigation } from '@react-navigation/native';
+import Picture from '../Screens/Camera';
 
 const Drawer = createDrawerNavigator()
 
 
 
 const DrawNavigator = () => {
+
+    const navigation = useNavigation();
     return (
 
         <>
@@ -23,8 +27,7 @@ const DrawNavigator = () => {
                             name="shopping-cart"
                             size={24}
                             color="black"
-
-                            onPress={() => navigation.navigate('CartScreen')}
+                            onPress={() => navigation.navigate('panier')}
                         />
                     )
                 }} />
@@ -42,6 +45,7 @@ const DrawNavigator = () => {
                     )
                 }} />
                 <Drawer.Screen name='achats' component={Achats} />
+                <Drawer.Screen name='Camera' component={Picture} />
 
             </Drawer.Navigator>
 
@@ -53,8 +57,8 @@ const DrawNavigator = () => {
 
 
 const styles = StyleSheet.create({
-    shoppingCart:{
-        marginRight:10
+    shoppingCart: {
+        marginRight: 10
     }
 
 })

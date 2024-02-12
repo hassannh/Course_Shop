@@ -3,10 +3,14 @@ import React from 'react';
 
 
 
-export default function Achats(){
+export default function Achats() {
 
-    <View>
-        <Text>hello</Text>
-    </View>
+    return (
+
+        <View>
+            <Text>hello</Text>
+        </View>
+    )
+
 
 }
