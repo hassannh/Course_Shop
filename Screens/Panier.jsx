@@ -20,8 +20,11 @@ export default function Panier({ route }) {
 
 
   const handleRemoveItem = (itemId) => {
-    dispatch(removeFromCart({itemId, selected: false }));
+    dispatch(removeFromCart(itemId));
   };
+
+
+  
 
   return (
     <>
