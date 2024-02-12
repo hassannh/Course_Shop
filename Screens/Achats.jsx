@@ -4,19 +4,30 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 
 
-export default function Achats() {
+export default function Achats({ route }) {
+
+    const { cartItems } = route.params;
 
     return (
 
         <ScrollView >
 
             <View style={styles.achatsContainer}>
-                <Text >00.00$</Text>
-                <Text> 22/08/2023</Text>
+
+                {cartItems.map((item, index) => (
+                    <View key={index}  style={styles.itemsContainer}>
+                        <View style={styles.item}>
+
+                            <Text>{item.title}</Text>
+                            <Text>{item.price}$</Text>
+
+                        </View>
+                    </View>
+                ))}
 
             </View>
 
-           
+
 
 
 
@@ -37,14 +48,7 @@ export default function Achats() {
                     onPress={() => setIsVisible(true)}
                 />
 
-                <View ></View>
-
-                
-                <View >
-                   
-                </View>
-
-
+            
             </>
 
         </ScrollView>
@@ -55,5 +59,13 @@ export default function Achats() {
 
 const styles = StyleSheet.create({
 
-    achatsContainer:{}
+    item: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginLeft: 3,
+        marginRight: 3
+    },
+    itemsContainer:{
+        height:'',
+    }
 })

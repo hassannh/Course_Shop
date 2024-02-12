@@ -1,18 +1,27 @@
 import { View, Text, Image, Alert, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Button, Card, } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/Actions/cartActions'
 
-export default function Details({ route }) {
+export default function Details({ route ,navigation}) {
 
     const { item } = route.params;
 
     const dispatch = useDispatch();
 
 
+    const cartItems = useSelector((state) => state);
+
+
+    const selectedItems = cartItems.cartItems
+
+    const isInCart = selectedItems.some((cartItem) => cartItem.id === item.id && cartItem.selected);
+
+
+
     const handleAddToCart = () => {
-        dispatch(addToCart(item));
+        dispatch(addToCart({ ...item, selected: true }));
         Alert.alert('Added to Cart', `You added ${item.title} to your cart!`);
         // dispatch(addToCart(item));
     };
@@ -32,12 +41,16 @@ export default function Details({ route }) {
                 <Text style={styles.price}>{item.price}$</Text>
             </View>
 
-            <View style={styles.buttonContainer}>
+            {!isInCart && (
 
-                <Button icon="cart" style={styles.button} onPress={handleAddToCart}>
-                    Add to cart
-                </Button>
+            <View style={styles.buttonContainer}>
+                
+                    <Button icon="cart" style={styles.button} onPress={handleAddToCart}>
+                        Add to cart
+                    </Button>
+                
             </View>
+            )}
         </View>
     )
 
@@ -54,17 +67,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    button:{
-        
-        backgroundColor:'green',
-        width:180,
-        alignSelf:'center',
+    button: {
+
+        backgroundColor: 'green',
+        width: 180,
+        alignSelf: 'center',
         justifyContent: 'center',
-        marginTop:19
+        marginTop: 19
     },
-    buttonContainer:{
-        height:80,
-        
+    buttonContainer: {
+        height: 80,
+
     },
     picture: {
         height: 250,

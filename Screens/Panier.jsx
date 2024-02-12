@@ -3,12 +3,12 @@ import React from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { useSelector , useDispatch  } from 'react-redux';
 import { removeFromCart } from '../redux/Actions/cartActions';
+import { payment } from '../redux/Actions/cartActions';
 
 
 
 
-export default function Panier({ route }) {
-
+export default function Panier({ navigation }) {
 
   const panierItems = useSelector((state) => state)
 
@@ -19,12 +19,17 @@ export default function Panier({ route }) {
   const total = prices.reduce((acc, item) => acc + item.price, 0).toFixed(2);
 
 
+
+
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromCart(itemId));
   };
 
 
-  
+
+
+
+
 
   return (
     <>
@@ -55,7 +60,7 @@ export default function Panier({ route }) {
               {total}$
             </Text>
           </View>
-          <TouchableOpacity onPress={() => console.log('pay')}>
+          <TouchableOpacity onPress={() => navigation.navigate('achats', { cartItems: panierItems.cartItems  })}>
             <View style={styles.payButton}>
               <Text>Pay</Text>
             </View>

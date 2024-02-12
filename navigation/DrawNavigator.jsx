@@ -16,6 +16,7 @@ const Drawer = createDrawerNavigator()
 const DrawNavigator = () => {
 
     const navigation = useNavigation();
+    
     return (
 
         <>
@@ -40,7 +41,7 @@ const DrawNavigator = () => {
                             size={24}
                             style={styles.shoppingCart}
                             color="black"
-                            onPress={() => navigation.navigate('CartScreen')}
+                            onPress={() => navigation.navigate('panier')}
                         />
                     )
                 }} />

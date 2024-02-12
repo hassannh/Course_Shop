@@ -19,16 +19,13 @@ const CatalogueItem = ({ navigation, item }) => {
 
   const isInCart = selectedItems.some((cartItem) => cartItem.id === item.id && cartItem.selected);
 
+
+
+
   const handleAddToCart = () => {
     dispatch(addToCart({ ...item, selected: true }));
     Alert.alert('Added to Cart', `You added ${item.title} to your cart!`);
   };
-
-
-
-  // if (isInCart) {
-  //   return null;
-  // }
 
 
 

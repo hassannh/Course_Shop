@@ -6,6 +6,7 @@ import Details from './Screens/Details';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import panier from './Screens/Panier'
 
 
 const Stack = createNativeStackNavigator();
@@ -14,7 +15,10 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  // const navigation = useNavigation();
+  
+  
+
+
   return (
 
     <Provider store={store}>
@@ -28,7 +32,7 @@ export default function App() {
       name="shopping-cart" 
       size={24} 
       color="black" 
-      onPress={() => navigation.navigate('panier')} 
+      // onPress={() => navigation.navigate('panier')} 
     />
      )}}/>
       </Stack.Navigator>

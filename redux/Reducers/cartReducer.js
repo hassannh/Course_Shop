@@ -1,4 +1,4 @@
-import {ADD_TO_CART,REMOVE_FROM_CART} from '../types'
+import {ADD_TO_CART,REMOVE_FROM_CART,PAYMENT} from '../types'
 
 
 const initialState = {
@@ -17,7 +17,13 @@ const initialState = {
           return {
             ...state,
             cartItems: state.cartItems.filter((item) => item.id !== action.payload),
-          }
+          };
+          
+          case PAYMENT:
+          return {
+            ...state,
+            cartItems: [...state.cartItems, action.payload]
+          };
       default:
         return state;
     }
