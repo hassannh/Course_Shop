@@ -1,8 +1,10 @@
-import {ADD_TO_CART,REMOVE_FROM_CART,PAYMENT} from '../types'
+import {ADD_TO_CART,REMOVE_FROM_CART,PAYMENT,REMOVE_FROM_CATALOGUE} from '../types'
 
 
 const initialState = {
+  
     cartItems: [],
+    catalogue: []
   };
   
   const cartReducer = (state = initialState, action) => {
@@ -17,6 +19,12 @@ const initialState = {
           return {
             ...state,
             cartItems: state.cartItems.filter((item) => item.id !== action.payload),
+          };
+
+          case REMOVE_FROM_CATALOGUE:
+          return {
+            ...state,
+            catalogue: state.catalogue.filter(item => item.id !== action.payload),
           };
           
           case PAYMENT:

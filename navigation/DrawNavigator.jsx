@@ -4,8 +4,8 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Catalogue from '../Screens/Catalogue'
 import Panier from '../Screens/Panier'
 import Achats from '../Screens/Achats'
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
-import Details from '../Screens/Details';
+import Storage from '../Screens/Storage'
+import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Picture from '../Screens/Camera';
 
@@ -16,7 +16,7 @@ const Drawer = createDrawerNavigator()
 const DrawNavigator = () => {
 
     const navigation = useNavigation();
-    
+
     return (
 
         <>
@@ -47,6 +47,8 @@ const DrawNavigator = () => {
                 }} />
                 <Drawer.Screen name='achats' component={Achats} />
                 <Drawer.Screen name='Camera' component={Picture} />
+                <Drawer.Screen name='storage' component={Storage} />
+
 
             </Drawer.Navigator>
 

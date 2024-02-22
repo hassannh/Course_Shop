@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Image, Text, Alert, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux/Actions/cartActions';
-
+import { addToCart, removeFromcatalogue } from '../redux/Actions/cartActions';
 
 
 const CatalogueItem = ({ navigation, item }) => {
@@ -35,6 +34,16 @@ const CatalogueItem = ({ navigation, item }) => {
 
 
 
+
+
+  const handleRemoveCatalogue = (itemId) => {
+    dispatch(removeFromcatalogue(itemId));
+  };
+
+
+
+
+
   return (
 <>
 {!isInCart && (
@@ -50,6 +59,9 @@ const CatalogueItem = ({ navigation, item }) => {
         <TouchableOpacity onPress={handleShowDetails}>
           <FontAwesome name="eye" size={24} color="black" style={{}} />
         </TouchableOpacity>
+
+
+        
         
           <TouchableOpacity onPress={handleAddToCart}>
             <FontAwesome name="shopping-basket" size={24} color="black" />

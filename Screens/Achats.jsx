@@ -12,7 +12,7 @@ export default function Achats({ route }) {
 
         <ScrollView >
 
-            <View style={styles.achatsContainer}>
+            <View >
 
                 {cartItems.map((item, index) => (
                     <View key={index}  style={styles.itemsContainer}>
